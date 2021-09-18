@@ -8,17 +8,22 @@ const PORT = process.env.PORT || 9000
 server.use(express.json())
 server.use(cors())
 
+
+server.get('/', (req,res,next)=>{
+    res.json({ message: 'api is working'})
+})
+
 server.use("*", (req,res,next)=>{
     res.send("<h1>Hello, Setup!</h1>")
 })
 
 
-server.use((err,req,res,next)=>{// eslint-disable-line
-    res.status(500).json({
-        message: err.message,
-        stack: err.stack,
+server.use((err,req,res,next)=>{ // eslint-disable-line
+    res.status(err.status||500).json({
+        message:err.message
     })
 })
+
 
 server.listen(PORT, () => {
     console.log(`listneing on ${PORT}`)
