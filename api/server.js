@@ -1,30 +1,16 @@
-require('dotenv').config()
-
 const express = require('express')
+const helmet = require('helmet')
 const cors = require('cors')
 
+
 const server = express()
-const PORT = process.env.PORT || 9000
 server.use(express.json())
+server.use(helmet())
 server.use(cors())
 
 
-server.get('/', (req,res,next)=>{
-    res.json({ message: 'api is working'})
+server.use((err, req, res, next) => { //eslint-disable-line
+  res.status(500).json({ message: err.message })
 })
 
-server.use("*", (req,res,next)=>{
-    res.send("<h1>Hello, Setup!</h1>")
-})
-
-
-server.use((err,req,res,next)=>{ // eslint-disable-line
-    res.status(err.status||500).json({
-        message:err.message
-    })
-})
-
-
-server.listen(PORT, () => {
-    console.log(`listneing on ${PORT}`)
-})
+module.exports = server
