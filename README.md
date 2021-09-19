@@ -4,7 +4,7 @@ API Documentation: https://backend-potluck.herokuapp.com/
 (UPDATE SO FAR. I have the text document flushed out but endpoints are not available at the moment will flush that out hopefully soon)
 Users:
 [GET] /api/users - returns an array filled with user objects similar to the following:
-
+```
 [
   {
         user_id: 1,
@@ -21,6 +21,8 @@ Users:
         email: "huimin@test.com"
     }
 ]
+```
+```
 Authentication:
 Method	URL	Description
 [POST]	/api/auth/register	Requires a username, password, name, and email. Registers a new user.
@@ -48,3 +50,4 @@ Method	URL	Description
 [GET]	/api/events/:id/items	Returns an array filled with items for the event.
 [POST]	/api/events/:id/items	Requires an item_name and a name (name of the person bringing the item) and adds the new item to the list of items
 [DELETE]	/api/events/:id/items	Requires item_name Removes the item with the specified item_name and returns the new list of items.
+```
