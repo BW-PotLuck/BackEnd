@@ -1,23 +1,24 @@
 # backendPotluck Planner API
 API url: not setup yet.
-API Documentation:
+API Documentation: https://backend-potluck.herokuapp.com/
+(UPDATE SO FAR. I have the text document flushed out but endpoints are not available at the moment will flush that out hopefully soon)
 Users:
 [GET] /api/users - returns an array filled with user objects similar to the following:
 
 [
   {
         user_id: 1,
-        username: "fred",
+        username: "nyriq",
         password: "$2a$08$R//PP9zaFmo5t3RYL4Yh0ONj.68YU2UQ5HlXbt8TbD.WHFMweWCsG",
-        name: "Fred",
-        email: "fred@test.com"
+        name: "nyriq",
+        email: "nyriq@test.com"
     },
     {
         user_id: 2,
-        username: "shaggy",
+        username: "huimin",
         password: "$2a$08$6TceWJyijzXrBAQlP.ZsW.o1y1MmmfJaCb3GPlJ.LnC3eYKtiWbzK",
-        name: "Shaggy",
-        email: "shaggy@test.com"
+        name: "huimin",
+        email: "huimin@test.com"
     }
 ]
 Authentication:

@@ -7,15 +7,12 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
-    "up": "knexmigrate:up",
-    "down": "knex migrate:down",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "migrateh": "heroku run knex migrate:latest -a backend-potluck",
     "rollbackh": "heroku run knex migrate:rollback -a backend-potluck",
     "databaseh": "heroku pg:psql -a backend-potluck",
     "seedh": "heroku run knex seed:run -a backend-potluck",
-    "test": "cross-env NODE_ENV=testing jest --watchALL --verbose --runInBand",
     "deploy": "git push heroku main"
   },
   "repository": {
