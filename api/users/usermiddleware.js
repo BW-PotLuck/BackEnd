@@ -4,8 +4,15 @@ const { getAllUsers } = require('../users/users-model');
 
 const checkCredetials = (req, res, next) => {
 	try {
-		if (!req.body.username || !req.body.password) {
-			next({ message: 'username and password required' });
+		if (
+			!req.body.name ||
+			!req.body.email ||
+			!req.body.username ||
+			!req.body.password
+		) {
+			next({ message: 'all fields are required' });
+		} else {
+			next();
 		}
 	} catch (error) {
 		next(error);
