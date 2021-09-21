@@ -13,7 +13,8 @@ module.exports = {
 
 async function insertUser(user) {
 	const [newUserObject] = await db('users').insert(user, [
-		'user_id',
+		'name',
+		'email',
 		'username',
 		'password',
 	]);
@@ -21,7 +22,9 @@ async function insertUser(user) {
 }
 
 function getAllUsers(filter) {
-	return db('users').select('user_id', 'username', 'password').where(filter);
+	return db('users')
+		.select('user_id', 'name', 'email', 'username', 'password')
+		.where(filter);
 }
 
 function findAll() {

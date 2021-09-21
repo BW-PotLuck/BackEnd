@@ -4,7 +4,7 @@ const { getAllUsers } = require('../users/users-model');
 
 const checkCredetials = (req, res, next) => {
 	try {
-		if (!req.bobdy.username || !req.body.password) {
+		if (!req.body.username || !req.body.password) {
 			next({ message: 'username and password required' });
 		}
 	} catch (error) {
