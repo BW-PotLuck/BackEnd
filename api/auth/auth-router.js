@@ -6,7 +6,7 @@ const { buildToken } = require('./token-builder');
 const {
 	checkCredetials,
 	checkNameExist,
-	checkUserNameInDb,
+	
 } = require('../users/usermiddleware');
 
 router.post('/register', checkCredetials, checkNameExist, (req, res, next) => {
@@ -21,7 +21,7 @@ router.post('/register', checkCredetials, checkNameExist, (req, res, next) => {
 });
 
 
-router.post('/login',checkUserNameInDb, (req, res) => {
+router.post('/login', (req, res) => {
     let { username, password } = req.body
     Users.findBy({ username })
       .then(([user]) => {
