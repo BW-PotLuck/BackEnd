@@ -32,4 +32,17 @@ const checkNameExist = async (req, res, next) => {
 	}
 };
 
-module.exports = { checkCredetials, checkNameExist };
+const checkUserNameInDb = async (req, res, next) => {
+	try {
+		const [user] = await getAllUsers({ username: req.body.username });
+		if (!user) {
+			next({ message: 'invalid credentials' });
+		} else {
+			req.user = user;
+			next();
+		}
+	} catch (error) {
+		next(error);
+	}
+};
+module.exports = { checkCredetials, checkNameExist, checkUserNameInDb };

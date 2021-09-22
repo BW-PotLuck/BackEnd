@@ -3,7 +3,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model');
 const { buildToken } = require('./token-builder');
-const { checkCredetials, checkNameExist } = require('../users/usermiddleware');
+const {
+	checkCredetials,
+	checkNameExist,
+	checkUserNameInDb,
+} = require('../users/usermiddleware');
 
 router.post('/register', checkCredetials, checkNameExist, (req, res, next) => {
 	console.log('one');
@@ -16,24 +20,16 @@ router.post('/register', checkCredetials, checkNameExist, (req, res, next) => {
 		.catch(next);
 });
 
-router.post('/login', (req, res) => {
-	let { username, password } = req.body;
-	Users.findBy({ username })
-		.then(([user]) => {
-			if (user && bcrypt.compareSync(password, user.password)) {
-				const token = buildToken(user);
-				res.status(200).json({
-					user_id: user.user_id,
-					message: `welcome, ${username}`,
-					token: token,
-				});
-			} else {
-				res.status(401).json({ message: 'invalid credentials' });
-			}
-		})
-		.catch((err) => {
-			res.status(500).json(err.message);
+router.post('/login', checkUserNameInDb, (req, res, next) => {
+	if (bcrypt.compareSync(req.body.password, req.user.password)) {
+		const token = buildToken(req.user);
+		res.json({
+			message: `Welcome, ${req.user.username}`,
+			token,
 		});
+	} else {
+		next({ status: 401, message: 'invalid credentials' });
+	}
 });
 
 module.exports = router;
