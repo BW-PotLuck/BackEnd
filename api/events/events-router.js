@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Events = require('./events-model')
-const { validateEvent, validateEventId } = require('../events/evnts-middleware')
+const { validateEvent, validateEventId } = require('./events-middleware')
 
 router.get('/', (req, res, next) => {
     Events.findAll()
@@ -86,7 +86,8 @@ router.post('/:id/guests',validateEvent, async (req, res, next) => {
 })
 
 router.put('/:id/guests/:userId', validateEventId, async (req, res, next) => {
-    
+    //still working on
+    next()
 })
 
 router.delete('/:id/guests', async (req, res, next) => {

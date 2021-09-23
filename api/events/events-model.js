@@ -112,4 +112,4 @@ async function updateItem(event_id, newInfo) {
 async function removeItem(event_id, item_name) {
     return db('items')
             .del()
-            .where({ event_id, item_name})
+            .where({ event_id, item_name})}

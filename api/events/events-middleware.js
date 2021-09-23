@@ -1,4 +1,4 @@
-const Events = require('../events/events-model')
+const Events = require('./events-model')
 
 module.exports = {
     validateEvent,
