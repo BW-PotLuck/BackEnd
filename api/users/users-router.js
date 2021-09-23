@@ -50,11 +50,3 @@ router.get('/:id', (req, res, next) => {
 
 module.exports = router
 
-
-
-
-async function add(event) {
-    return db('events').insert(event, 'event_id').then(([id]) => {
-        return findById(id)
-    })
-}
