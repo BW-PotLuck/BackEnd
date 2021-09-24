@@ -14,7 +14,7 @@ server.use(cors());
 
 server.use('/api/users', restricted, userRouter);
 server.use('/api/auth', authRouter);
-server.use('/api/events', eventsRouter);
+server.use('/api/events', restricted, eventsRouter);
 
 server.use((err, req, res, next) => {
 	//eslint-disable-line
